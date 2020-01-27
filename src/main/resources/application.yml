@@ -19,3 +19,5 @@ flyway:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+mapper:
+  i-d-e-n-t-i-t-y: MYSQL

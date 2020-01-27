@@ -22,7 +22,7 @@ public class QuestionService {
     public List<QuestionDTO> list(){
         List<QuestionDTO> QuestionDTOList = new ArrayList<>();
         //先查出question对象列表
-        List<questionDAO> questionList = questionDAOMapper.selectList();
+        List<questionDAO> questionList = questionDAOMapper.selectAll();
         for (questionDAO Q: questionList) {
             QuestionDTO QT = new QuestionDTO();
             //复制数据到DTO
