@@ -1,0 +1,21 @@
+github:
+  clientId: 21f13756dcf9a4ef70df
+  clientSecret: 45d5c8df85d0fcd02634bc002edff3abbf8eee2b
+  redirectUri: http://localhost:8080/oauth/callback
+spring:
+  messages:
+    basename: message.index
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/majiang?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+flyway:
+    baseline-on-migrate: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
