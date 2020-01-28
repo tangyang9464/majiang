@@ -49,6 +49,11 @@
                             <span th:text="${session.user.getName()}"></span>
                             <span class="caret"></span>
                         </a>
+                        <li>
+                            <a href="#">
+                                <img class=" media-object" th:src="${session.user.getAvatarUrl()}" alt="">
+                            </a>
+                        </li>
                         <ul class="dropdown-menu">
                             <li><a href="/profile/questions">我的问题</a></li>
                             <li><a href="/logout">退出登录</a></li>

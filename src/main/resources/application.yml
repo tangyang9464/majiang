@@ -2,6 +2,10 @@ github:
   clientId: 21f13756dcf9a4ef70df
   clientSecret: 45d5c8df85d0fcd02634bc002edff3abbf8eee2b
   redirectUri: http://localhost:8080/oauth/callback
+
+page:
+  pageSize: 5
+
 spring:
   messages:
     basename: message.index
@@ -19,5 +23,12 @@ flyway:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
 mapper:
   i-d-e-n-t-i-t-y: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

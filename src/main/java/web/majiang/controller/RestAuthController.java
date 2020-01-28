@@ -49,10 +49,11 @@ public class RestAuthController {
         GitHubUser user = JSON.parseObject(str,GitHubUser.class);
         if(user != null)
         {
-            //插入数据库(放入姓名,token),DTO转换成DAO
+            //插入数据库(放入姓名,token,头像url),DTO转换成DAO
             userDAO userDAO = new userDAO();
             userDAO.setName(user.getusername());
             userDAO.setToken(token);
+            userDAO.setAvatarUrl(user.getavatar());
             userMapper.insertSelective(userDAO);
 //            放入cooike
             Cookie cookie = new Cookie("token", token);
