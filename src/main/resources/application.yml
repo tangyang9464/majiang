@@ -1,6 +1,6 @@
 github:
   clientId: 21f13756dcf9a4ef70df
-  clientSecret: 45d5c8df85d0fcd02634bc002edff3abbf8eee2b
+  clientSecret: f5ec4155daf526f2e7c0d3b40b047a5bcdebfc7b
   redirectUri: http://localhost:8080/oauth/callback
 
 page:
@@ -11,18 +11,19 @@ spring:
     basename: message.index
   thymeleaf:
     cache: false
+    mode: LEGACYHTML5
   datasource:
     url: jdbc:mysql://localhost:3306/majiang?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
 flyway:
     baseline-on-migrate: true
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 mapper:
   i-d-e-n-t-i-t-y: MYSQL

@@ -62,7 +62,7 @@ public class RestAuthController {
             return "redirect:/index.html";
         }
         else{
-            return "index";
+            return "redirect:/index.html";
         }
     }
 

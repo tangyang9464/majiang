@@ -10,16 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object str = request.getSession().getAttribute("text");
+        Object user = request.getSession().getAttribute("user");
         //已经登录成功
-        if(str!=null){
+        if(user!=null){
             return true;
         }
         //不放行,重新返回登录页面
         else{
-            request.setAttribute("error", "没有权限,请登录");
-            request.getRequestDispatcher("/index.html").
-                    forward(request, response);
+            response.setContentType("text/html;chcarset=UTF-8");
+            response.getWriter().println("Do not have permission, please log in");
             return false;
         }
     }

@@ -27,21 +27,18 @@ function comment2target(targetId, type, content) {
             "type": type
         }),
         success: function (response) {
-            if (response.code == 200) {
+            if (response === "200") {
                 window.location.reload();
-            } else {
-                if (response.code == 2003) {
-                    var isAccepted = confirm(response.message);
-                    if (isAccepted) {
-                        window.open("https://github.com/login/oauth/authorize?client_id=2859958f9f059979ed3a&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
-                        window.localStorage.setItem("closable", true);
-                    }
-                } else {
-                    alert(response.message);
+            }
+            else if (response === "2003") {
+                var isAccepted = confirm("没有权限,是否登录?");
+                if (isAccepted) {
+                    window.open("/oauth/render");
+                    window.localStorage.setItem("closable", true);
                 }
             }
         },
-        dataType: "json"
+        dataType: "text"
     });
 }
 
@@ -75,7 +72,7 @@ function collapseComments(e) {
             e.classList.add("active");
         } else {
             $.getJSON("/comment/" + id, function (data) {
-                $.each(data.data.reverse(), function (index, comment) {
+                $.each(data, function (index, comment) {
                     var mediaLeftElement = $("<div/>", {
                         "class": "media-left"
                     }).append($("<img/>", {

@@ -42,26 +42,28 @@ public class index {
                            Model model) throws Exception {
         //用户登录检查
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            //找到token
-            if (cookie.getName().equals("token")) {
-                Example example = new Example(userDAO.class);
-                example.createCriteria().andEqualTo("token", cookie.getValue());
-                userDAO user = userMapper.selectOneByExample(example);
-                if (user != null) {
-                    //放到会话中,用于登录用户的数据输入
-                    request.getSession().setAttribute("user", user);
+        if(cookies != null)
+            for (Cookie cookie : cookies) {
+                //找到token
+                if (cookie.getName().equals("token")) {
+                    Example example = new Example(userDAO.class);
+                    example.createCriteria().andEqualTo("token", cookie.getValue());
+                    userDAO user = userMapper.selectOneByExample(example);
+                    if (user != null) {
+                        //放到会话中,用于登录用户的数据输入
+                        request.getSession().setAttribute("user", user);
+                    }
+                    break;
                 }
-                break;
             }
-        }
         request.getRequestDispatcher("/index").forward(request, response);
     }
 
     @RequestMapping("/index")
     public String PageDisplay(Model model,
-                              @RequestParam(required = false,defaultValue="1",value="pageNum")Integer pageNum,
-                              HttpServletRequest request
+                              @RequestParam(required = false,defaultValue="1",value="pageNum") Integer pageNum,
+                              HttpServletRequest request,
+                              @RequestParam(required = false) Example example
                               ){
 
         //为了程序的严谨性，判断非空：
@@ -69,12 +71,12 @@ public class index {
             pageNum = 1;   //设置默认当前页
         }
         if(pageNum <= 0){
-        pageNum = 1;
-    }
+            pageNum = 1;
+        }
         if(pageSize == null){
-        pageSize = 5;    //设置默认每页显示的数据数
-    }
-        QuestionDTOPageInfo<questionDAO> pageInfo = QS.QuestionPagingQuery(pageNum, pageSize);
+            pageSize = 5;    //设置默认每页显示的数据数
+        }
+        QuestionDTOPageInfo<questionDAO> pageInfo = QS.QuestionPagingQuery(pageNum, pageSize,example);
         model.addAttribute("pageInfo",pageInfo);
         return "index";
     }

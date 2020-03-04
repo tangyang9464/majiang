@@ -20,6 +20,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/index.html").setViewName("index");
                 registry.addViewController("/test1.html").setViewName("test1");
                 registry.addViewController("/publish.html").setViewName("publish");
+                registry.addViewController("/profile.html").setViewName("profile");
             }
 
 //            //拦截器
@@ -43,4 +44,19 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver(){
         return new MyLocaleResolver();
     }
+
+    //静态资源映射
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:static/");
+    }
+
+    //拦截器
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginHandlerInterceptor())
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/","/index.html","/index","/static/**","/oauth/**","/comment");
+//    }
 }
