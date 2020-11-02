@@ -1,4 +1,4 @@
-#majiang论坛
+# majiang论坛
 
 ### 项目简介
 课余时间写的论坛项目,主要功能包括用户登录,发帖,回帖,分页展示等.采用了springboot+mybatis+mysql等技术
