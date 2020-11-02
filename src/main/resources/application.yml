@@ -1,10 +1,12 @@
+#github第三方登录授权的相关信息,使用登录功能必填
 github:
   clientId: 21f13756dcf9a4ef70df
   clientSecret: f5ec4155daf526f2e7c0d3b40b047a5bcdebfc7b
   redirectUri: http://localhost:8080/oauth/callback
-
+#分页
 page:
   pageSize: 5
+
 
 spring:
   messages:
@@ -12,14 +14,14 @@ spring:
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
+  #数据库信息,必填
   datasource:
     url: jdbc:mysql://localhost:3306/majiang?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-flyway:
+  flyway:
     baseline-on-migrate: true
-
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -33,3 +35,6 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+server:
+  port: 8080
